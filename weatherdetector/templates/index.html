@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+      .input-group {
+        margin: auto;
+        display: flex;
+        width: 70%;
+        margin-top: 3rem;
+        text-align: center;
+      }
+      .card {
+        margin: 3rem auto;
+        width: 70%;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Weather Detector</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#"
+                ><span class="glyphicon glyphicon-log-in"></span> Login</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="input-group">
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          name="city"
+        />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+      </div>
+    </form>
+
+    <div class="card">
+      {% if data.country_code %}
+      <div class="card-body">
+        <h1>{{city}}</h1>
+        <h2 class="card-title">country code: {{data.country_code}}</h2>
+        <h3 class="card-subtitle mb-2 text-muted">
+          coordinate: {{data.coordinate}}
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">temp : {{data.temp}}</h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          pressure : {{data.pressure}}
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          humidity : {{data.humidity}}
+        </h3>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
